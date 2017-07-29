@@ -1,0 +1,19 @@
+{
+  "name": "acme-users-pg",
+  "version": "1.0.0",
+  "description": "Weekend Project: Acme Users PG",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Colin FitzGerald",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "pg": "^7.0.2",
+    "pug": "^2.0.0-rc.2"
+  }
+}
