@@ -3,6 +3,20 @@ body {
   font-weight: 700;
 }
 
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
 a {
   font-weight: 400;
+}
+
+.page-header {
+  border-bottom: 1px dotted #eee;
+  text-align: right;
+}
+
+.nav {
+  margin-bottom: 20px;
 }

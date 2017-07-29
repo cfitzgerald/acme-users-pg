@@ -4,24 +4,24 @@ const router = require('express').Router();
 module.exports = router;
 
 // the routes!
-router.get('/users', (req, res, next) => {
+router.get('/', (req, res, next) => {
   res.render('users', {
-
+    users: db.getUsers()
   });
 });
 
-router.post('/users', (req, res, next) => {
+router.post('/', (req, res, next) => {
 
 });
 
-router.put('users/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
 
 });
 
-router.delete('users/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
 
 });
 
-router.get('users/managers', (req, res, next) => {
+router.get('/managers', (req, res, next) => {
 
 });

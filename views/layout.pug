@@ -19,4 +19,12 @@ html(lang='en')
         div.page-header
           h1 Acme Users #[small PG!]
 
+        ul.nav.nav-pills
+          li.active
+            a(href='/') Home
+          li
+            a(href='/users') Users (#{count})
+          li
+            a(href='/users/managers') Managers (#{count})
+
         block content

@@ -2,9 +2,13 @@ extends layout
 
 block content
 
-    h2 Home
-    form.well(method='POST' action='/categories')
-      div.form-group
-        input.form-control(name='name' placeholder='add a new USER name...')
-      div.form-group
-        button.btn.btn-primary Add User
+  form.well(method='POST' action='/users')
+    div.form-group
+      input.form-control(name='name' placeholder='add a new USER name...')
+    div.check-box
+      label(for='isManager') Is Manager
+      |
+      |
+      input#isManager(type='checkbox' name='isManager')
+    div.form-group
+      button.btn.btn-primary Add User
