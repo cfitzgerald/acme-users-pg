@@ -20,11 +20,11 @@ html(lang='en')
           h1 Acme Users #[small PG!]
 
         ul.nav.nav-pills
-          li.active
+          li(class = (nav === 'home' ? 'active' : ''))
             a(href='/') Home
-          li
-            a(href='/users') Users (#{count})
-          li
-            a(href='/users/managers') Managers (#{count})
+          li(class = (nav === 'users' ? 'active' : ''))
+            a(href='/users') Users (#{userCount})
+          li(class = (nav === 'managers' ? 'active' : ''))
+            a(href='/users/managers') Managers (#{userCount})
 
         block content

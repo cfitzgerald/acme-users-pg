@@ -5,9 +5,16 @@ module.exports = router;
 
 // the routes!
 router.get('/', (req, res, next) => {
-  res.render('users', {
-    users: db.getUsers()
-  });
+  db.getUsers()
+    .then(users => {
+      res.render('users', {
+        nav: 'users',
+        users: users
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 // req.body = { name: 'Testy McGee' } // isManager is UNDEFINED
@@ -39,6 +46,7 @@ router.delete('/:id', (req, res, next) => {
 
 router.get('/managers', (req, res, next) => {
   res.render('managers', {
+    nav: 'managers',
     users: db.getUsers()
   });
 });

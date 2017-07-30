@@ -21,7 +21,7 @@ app.set('view engine', 'pug'); // set the 'view engine' val to specify the templ
 app.use((req, res, next) => {
   db.getUsers()
     .then(users => {
-      res.locals.count = users.length;
+      res.locals.userCount = users.length;
       next();
     })
     .catch(err => {
@@ -31,7 +31,9 @@ app.use((req, res, next) => {
 
 // handle the root route
 app.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', {
+    nav: 'home'
+  });
 });
 
 // handle routes to users.js

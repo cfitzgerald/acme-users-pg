@@ -23,3 +23,7 @@ a {
 .nav {
   margin-bottom: 20px;
 }
+
+.user-name {
+  border-bottom: 1px dotted #eee;
+}

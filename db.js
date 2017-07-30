@@ -69,7 +69,7 @@ function seed() {
 function getUsers(managersOnly) {
   return query('SELECT * FROM users', null)
     .then(result => {
-      // console.log('getUsers() result.rows = ', result.rows);
+      // console.log('getUsers() result.rows.name = ', result.rows[0].name);
       return result.rows;
     });
 }
