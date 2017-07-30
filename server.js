@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
   res.render('error', { error: err });
 });
 
-// server setup + db synchronize
+// server setup + db synchronize/seed
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`acme-users-pg listening on ${port}...`);

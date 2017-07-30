@@ -5,4 +5,10 @@ block content
   ul.list-group
     each user in users
       li.list-group-item
-        #{user.name}
+        h4.user-name #{user.name}
+        form(method='POST' action='/users/' + user.id + '?_method=PUT')
+          if user.isManager
+            button.btn.btn-warning Remove as Manager
+          else
+            button.btn.btn-primary Make Manager
+            button.btn.btn-primary Delete User

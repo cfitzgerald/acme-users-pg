@@ -17,7 +17,7 @@ function query(sql, params) {
   });
 }
 
-// synchronize the database
+// // synchronize the database
 // function synchronize(cb) { // takes a callback function
 //   let sql = require('./seedfile.js');
 //   query(sql, null, (err) => {
@@ -66,25 +66,53 @@ function seed() {
 //     cb(null, result.rows);
 //   });
 // }
-function getUsers() {
-  return query('SELECT * FROM users WHERE isManager = FALSE', null)
+function getUsers(managersOnly) {
+  return query('SELECT * FROM users', null)
     .then(result => {
       // console.log('getUsers() result.rows = ', result.rows);
       return result.rows;
     });
 }
 
+function getUser(id) {
+  return query('SELECT * FROM users WHERE user.id = $1', [ id ])
+    .then(result => {
+      //console.log('getUser() result.rows = ', result.rows);
+      return result.rows;
+    });
+}
+
+// req.body = { name: 'Testy McGee' }
+// req.body = { name: 'Testy McGee Sr.', isManager: 'on' }
 function createUser(user) {
+  // console.log('user = ', user);
+  // console.log('user.isManager = ', user.isManager);
+  // if (!user.isManager) {
+  //   user.isManager = 'false';
+  // } else {
+  //   user.isManager = 'true'; // 'on' IS a valid literal value for 'true' in PG, but I'm forcing it to be 'true'
+  // }
+  // console.log('isManager? ', user.isManager);
   return query('INSERT INTO users (name, isManager) VALUES ($1, $2) RETURNING id', [ user.name, user.isManager ])
     .then(result => {
-      // console.log('result.rows = ', result.rows);
+      console.log('createUser() result.rows = ', result.rows);
       return result.rows[0].id;
     });
 }
 
+function deleteUser(id) {
+  return query('DELETE FROM users WHERE user.id = $1', [ id ]);
+}
+
+function updateUser(user) {
+
+}
+
 module.exports =  {
   createUser: createUser,
+  deleteUser: deleteUser,
   getUsers: getUsers,
   seed: seed,
-  synchronize: synchronize
+  synchronize: synchronize,
+  updateUser: updateUser
 };

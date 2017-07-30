@@ -1,11 +1,13 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-family: Roboto, sans-serif;
+  /*font-family: 'Zilla Slab', serif;*/
+  font-weight: normal;
 }
 
-h1 {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+h1, h2 {
+  /*font-family: Roboto, sans-serif;*/
+  font-family: 'Zilla Slab', serif;
+  font-weight: bold;
 }
 
 a {
@@ -13,7 +15,8 @@ a {
 }
 
 .page-header {
-  border-bottom: 1px dotted #eee;
+  /*border-bottom: 5px solid #83d0f2;*/
+  border-bottom: 5px solid #eee;
   text-align: right;
 }
 
