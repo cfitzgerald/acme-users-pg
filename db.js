@@ -34,7 +34,7 @@ function synchronize() {
     CREATE TABLE users(
       id SERIAL PRIMARY KEY,
       name CHARACTER VARYING(255) UNIQUE,
-      isManager BOOLEAN
+      is_manager BOOLEAN
     );
   `;
   return query(sql);
@@ -42,11 +42,11 @@ function synchronize() {
 
 function seed() {
   return Promise.all([
-    createUser({ name: 'Hans Tanager', isManager: 'true' }),
-    createUser({ name: 'Gretta Muser', isManager: 'false' }),
-    createUser({ name: 'Shrimply Pibbles', isManager: 'true' }),
-    createUser({ name: 'The Best User', isManager: 'false' }),
-    createUser({ name: 'The Very Best User', isManager: 'false' }),
+    createUser({ name: 'Hans Tanager', is_manager: 'true' }),
+    createUser({ name: 'Gretta Muser', is_manager: 'false' }),
+    createUser({ name: 'Shrimply Pibbles', is_manager: 'true' }),
+    createUser({ name: 'The Best User', is_manager: 'false' }),
+    createUser({ name: 'The Very Best User', is_manager: 'false' }),
   ])
   .then(result => {
     console.log('seed result = ', result);
@@ -55,7 +55,7 @@ function seed() {
 
 // function getUsers(cb) {
 //   let sql = `
-//     SELECT id, name, isManager
+//     SELECT id, name, is_manager
 //     FROM users
 //   `;
 //   query(sql, null, (err, result) => {
@@ -67,11 +67,19 @@ function seed() {
 //   });
 // }
 function getUsers(managersOnly) {
-  return query('SELECT * FROM users', null)
-    .then(result => {
-      // console.log('getUsers() result.rows.name = ', result.rows[0].name);
-      return result.rows;
-    });
+  if (!managersOnly) {
+    return query('SELECT * FROM users', null)
+      .then(result => {
+        // console.log('getUsers() result.rows.name = ', result.rows[0].name);
+        return result.rows;
+      });
+  } else {
+    return query('SELECT * FROM users WHERE is_manager = TRUE', null)
+      .then(result => {
+        // console.log('getUsers() result.rows.name = ', result.rows[0].name);
+        return result.rows;
+      });
+  }
 }
 
 function getUser(id) {
@@ -83,29 +91,30 @@ function getUser(id) {
 }
 
 // req.body = { name: 'Testy McGee' }
-// req.body = { name: 'Testy McGee Sr.', isManager: 'on' }
+// req.body = { name: 'Testy McGee Sr.', is_manager: 'on' }
 function createUser(user) {
   // console.log('user = ', user);
-  // console.log('user.isManager = ', user.isManager);
-  // if (!user.isManager) {
-  //   user.isManager = 'false';
+  // console.log('user.is_manager = ', user.is_manager);
+  // if (!user.is_manager) {
+  //   user.is_manager = 'false';
   // } else {
-  //   user.isManager = 'true'; // 'on' IS a valid literal value for 'true' in PG, but I'm forcing it to be 'true'
+  //   user.is_manager = 'true'; // 'on' IS a valid literal value for 'true' in PG, but I'm forcing it to be 'true'
   // }
-  // console.log('isManager? ', user.isManager);
-  return query('INSERT INTO users (name, isManager) VALUES ($1, $2) RETURNING id', [ user.name, user.isManager ])
+  // console.log('is_manager? ', user.is_manager);
+  return query('INSERT INTO users (name, is_manager) VALUES ($1, $2) RETURNING id', [ user.name, user.is_manager ])
     .then(result => {
-      console.log('createUser() result.rows = ', result.rows);
+      // console.log('createUser() result.rows = ', result.rows);
       return result.rows[0].id;
     });
 }
 
 function deleteUser(id) {
-  return query('DELETE FROM users WHERE user.id = $1', [ id ]);
+  // console.log('id = ' + id + ' (typoef id = ' + typeof id + ')');
+  return query('DELETE FROM users WHERE users.id = $1', [ id ]);
 }
 
-function updateUser(user) {
-
+function updateUser(id) {
+  return query('UPDATE users SET is_manager = TRUE WHERE id = $1', [ id ]);
 }
 
 module.exports =  {

@@ -17,15 +17,15 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// req.body = { name: 'Testy McGee' } // isManager is UNDEFINED
-// req.body = { name: 'Testy McGee Sr.', isManager: 'on' }
+// req.body = { name: 'Testy McGee' } // is_manager is UNDEFINED
+// req.body = { name: 'Testy McGee Sr.', is_manager: 'on' }
 // if user -> redirect to USERS page
 // if manager -> redirect to MANAGERS page
 router.post('/', (req, res, next) => {
   db.createUser(req.body)
     .then(() => {
-      // console.log('req.body.isManager = ', req.body.isManager);
-      if (req.body.isManager) {
+      // console.log('req.body.is_manager = ', req.body.is_manager);
+      if (req.body.is_manager) {
         res.redirect('/managers');
       } else {
         res.redirect('/users');
@@ -37,16 +37,35 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-
+  db.updateUser(Number(req.params.id))
+    .then(() => {
+      res.redirect('/users');
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 router.delete('/:id', (req, res, next) => {
-
+  db.deleteUser(Number(req.params.id))
+    .then(() => {
+      res.redirect('/users');
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 router.get('/managers', (req, res, next) => {
-  res.render('managers', {
-    nav: 'managers',
-    users: db.getUsers()
-  });
+  let managersOnly = true;
+  db.getUsers(managersOnly)
+    .then(managers => {
+      res.render('managers', {
+        nav: 'managers',
+        managers: managers
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
 });

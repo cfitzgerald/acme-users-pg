@@ -1,17 +1,23 @@
 body {
-  font-family: Roboto, sans-serif;
-  /*font-family: 'Zilla Slab', serif;*/
-  font-weight: normal;
+  /*font-family: Roboto, sans-serif;*/
+  font-family: 'Zilla Slab', serif;
+  font-weight: 400;
 }
 
 h1, h2 {
+  /*color: #83d0f2;*/
   /*font-family: Roboto, sans-serif;*/
   font-family: 'Zilla Slab', serif;
-  font-weight: bold;
+  font-weight: 700;
 }
 
-a {
+a, .btn {
+  font-family: Roboto, sans-serif;
   font-weight: 400;
+}
+
+.input-group-addon label {
+  margin-bottom: 0;
 }
 
 .page-header {
@@ -24,6 +30,61 @@ a {
   margin-bottom: 20px;
 }
 
-.user-name {
+ul.list-group {
+  border: none;
+}
+
+li.list-group-item {
+/*  border: 1px dotted #eee;*/
+}
+
+/*.nav-tabs {
   border-bottom: 1px dotted #eee;
+}
+
+.nav-tabs li.active a {
+  border: 1px dotted #eee;
+  border-radius: 0;
+}*/
+
+/*.nav-pills li.active a {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+.nav-pills li.active a:hover {
+  background-color: #31b0d5;
+  border-color: #269abc;
+}*/
+
+.badge {
+  padding: 4px 9px 4px;
+  font-size: 12.025px;
+  font-weight: 400;
+  white-space: nowrap;
+  color: #ffffff;
+  background-color: #999999;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  box-shadow: .5px 1px 5px #888888;
+}
+
+.btn-danger {
+  background-color: #eee;
+  /*border-style: dashed;*/
+  /*border-width: 1px;*/
+  color: #d9534f;
+}
+
+.btn-primary {
+  background-color: #eee;
+  /*border-style: dotted;*/
+  color: #337ab7;
+}
+
+h3.user-name {
+  border-bottom: 1px dotted #eee;
+  /*font-family: 'Zilla Slab Highlight', cursive;
+  font-weight: bold;*/
 }

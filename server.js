@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const db = require('./db');
 const express = require('express');
+const override = require('method-override');
 const morgan = require('morgan');
 const path = require('path');
 const pug = require('pug');
@@ -11,6 +12,7 @@ const app = express();
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static('public')); // use the express.static middleware to get express to serve static files in /public
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(override('_method')); // use the _method parameter on the url
 app.use(morgan('dev')); // good ol' morgan with the 'dev' option
 
 // pug setup
@@ -22,6 +24,17 @@ app.use((req, res, next) => {
   db.getUsers()
     .then(users => {
       res.locals.userCount = users.length;
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+app.use((req, res, next) => {
+  let managersOnly = true;
+  db.getUsers(managersOnly)
+    .then(users => {
+      res.locals.managerCount = users.length;
       next();
     })
     .catch(err => {
