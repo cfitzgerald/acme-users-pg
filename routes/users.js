@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
     .then(() => {
       // console.log('req.body.is_manager = ', req.body.is_manager);
       if (req.body.is_manager) {
-        res.redirect('/managers');
+        res.redirect('/users/managers');
       } else {
         res.redirect('/users');
       }

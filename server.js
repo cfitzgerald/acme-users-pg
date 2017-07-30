@@ -30,6 +30,7 @@ app.use((req, res, next) => {
       next(err);
     });
 });
+
 app.use((req, res, next) => {
   let managersOnly = true;
   db.getUsers(managersOnly)

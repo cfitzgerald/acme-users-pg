@@ -5,11 +5,12 @@ block content
   ul.list-group
     each user in users
       li.list-group-item
-        h3.user-name #{user.name}
         if user.is_manager
-          span.badge Manager!
+          h3.user-name #{user.name} #[label.manager Manager]
         else
-          form(method='POST' action='/users/' + user.id + '?_method=PUT')
-            button.btn.btn-primary.btn-sm Make Manager
-          form(method='POST' action='/users/' + user.id + '?_method=DELETE')
-            button.btn.btn-danger.btn-sm Delete User
+          h3.user-name #{user.name}
+          div.form-group
+            form(method='POST' action='/users/' + user.id + '?_method=PUT')
+              button.btn.btn-primary.btn-sm Make Manager
+            form(method='POST' action='/users/' + user.id + '?_method=DELETE')
+              button.btn.btn-danger.btn-sm Delete User

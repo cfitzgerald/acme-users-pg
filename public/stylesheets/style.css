@@ -35,7 +35,7 @@ ul.list-group {
 }
 
 li.list-group-item {
-/*  border: 1px dotted #eee;*/
+  /*border: none;*/
 }
 
 /*.nav-tabs {
@@ -57,17 +57,22 @@ li.list-group-item {
   border-color: #269abc;
 }*/
 
-.badge {
+/*.badge {
   padding: 4px 9px 4px;
   font-size: 12.025px;
-  font-weight: 400;
+  font-weight: 300;
   white-space: nowrap;
   color: #ffffff;
   background-color: #999999;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
   box-shadow: .5px 1px 5px #888888;
+}*/
+
+form {
+  display: inline;
+  margin-right: 10px;
 }
 
 .btn-danger {
@@ -83,8 +88,24 @@ li.list-group-item {
   color: #337ab7;
 }
 
+.btn-warning {
+  background-color: #eee;
+  /*border-style: dotted;*/
+  color: #f0ad4e;
+}
+
 h3.user-name {
-  border-bottom: 1px dotted #eee;
-  /*font-family: 'Zilla Slab Highlight', cursive;
-  font-weight: bold;*/
+  /*background-color: #ccc;*/
+  border-bottom: 1px dotted #ccc;
+  color: #000;
+  font-weight: 400;
+}
+
+label.manager {
+  /*background-color: #5bc0de;*/
+  background-color: #ccc;
+  color: #fff;
+  font-weight: 300;
+  margin: 0 0 0 5px;
+  padding: 2px 4px 0px;
 }
