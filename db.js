@@ -59,14 +59,6 @@ function getUsers(managersOnly) {
     });
 }
 
-// function getUser(id) {
-//   return query('SELECT * FROM users WHERE user.id = $1', [ id ])
-//     .then(result => {
-//       // console.log('getUser() result.rows = ', result.rows);
-//       return result.rows;
-//     });
-// }
-
 // req.body = { name: 'Testy McGee' }
 // req.body = { name: 'Testy McGee Sr.', is_manager: 'on' }
 function createUser(user) {
