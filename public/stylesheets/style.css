@@ -23,7 +23,12 @@ a, .btn {
 .page-header {
   /*border-bottom: 5px solid #83d0f2;*/
   border-bottom: 5px solid #eee;
+  padding-bottom: 0;
   text-align: right;
+}
+
+.page-header h1 {
+  margin-bottom: 0;
 }
 
 .nav {
@@ -70,7 +75,7 @@ li.list-group-item {
   box-shadow: .5px 1px 5px #888888;
 }*/
 
-form {
+.form-group form {
   display: inline;
   margin-right: 10px;
 }
@@ -96,7 +101,7 @@ form {
 
 h3.user-name {
   /*background-color: #ccc;*/
-  border-bottom: 1px dotted #ccc;
+  border-bottom: 5px solid #ccc;
   color: #000;
   font-weight: 400;
 }

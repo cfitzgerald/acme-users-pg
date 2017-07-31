@@ -46,34 +46,33 @@ function seed() {
 }
 
 function getUsers(managersOnly) {
+  let sql = '';
   if (!managersOnly) {
-    return query('SELECT * FROM users', null)
-      .then(result => {
-        // console.log('getUsers() result.rows.name = ', result.rows[0].name);
-        return result.rows;
-      });
+    sql = 'SELECT * FROM users';
   } else {
-    return query('SELECT * FROM users WHERE is_manager = TRUE', null)
-      .then(result => {
-        return result.rows;
-      });
+    sql = 'SELECT * FROM users WHERE is_manager = TRUE';
   }
-}
-
-function getUser(id) {
-  return query('SELECT * FROM users WHERE user.id = $1', [ id ])
+  return query(sql, null)
     .then(result => {
-      //console.log('getUser() result.rows = ', result.rows);
+      // console.log('getUsers() result.rows = ', result.rows);
       return result.rows;
     });
 }
+
+// function getUser(id) {
+//   return query('SELECT * FROM users WHERE user.id = $1', [ id ])
+//     .then(result => {
+//       // console.log('getUser() result.rows = ', result.rows);
+//       return result.rows;
+//     });
+// }
 
 // req.body = { name: 'Testy McGee' }
 // req.body = { name: 'Testy McGee Sr.', is_manager: 'on' }
 function createUser(user) {
   return query('INSERT INTO users (name, is_manager) VALUES ($1, $2) RETURNING id', [ user.name, user.is_manager ])
     .then(result => {
-      // console.log('createUser() result.rows = ', result.rows);
+      // console.log('createUser() result.rows[0] = ', result.rows[0]);
       return result.rows[0].id;
     });
 }
@@ -85,7 +84,7 @@ function deleteUser(id) {
 
 function updateUser(id) {
   // console.log('getUser(id) = ', getUser(id));
-  return query('UPDATE users SET is_manager = TRUE WHERE id = $1', [ id ]);
+  return query('UPDATE users SET is_manager = NOT is_manager WHERE id = $1', [ id ]);
 }
 
 module.exports =  {
